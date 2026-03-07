@@ -19,7 +19,6 @@ interface ServiceWithCode {
   totp: TOTPCode;
 }
 
-
 export default function SearchOTP() {
   const [items, setItems] = useState<ServiceWithCode[]>([]);
   const [isLoading, setIsLoading] = useState(true);

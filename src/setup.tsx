@@ -119,7 +119,7 @@ export default function Setup() {
               actions={
                 <ActionPanel>
                   <Action
-                    title="Re-import"
+                    title="Re-Import"
                     icon={Icon.ArrowClockwise}
                     onAction={() =>
                       launchCommand({

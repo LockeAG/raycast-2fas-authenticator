@@ -60,7 +60,10 @@ export function createVault(services: VaultService[]): void {
   const plaintext = Buffer.from(JSON.stringify(services), "utf-8");
   const vaultFile = encrypt(plaintext, key);
   const path = vaultPath();
-  writeFileSync(path, JSON.stringify(vaultFile), { encoding: "utf-8", mode: 0o600 });
+  writeFileSync(path, JSON.stringify(vaultFile), {
+    encoding: "utf-8",
+    mode: 0o600,
+  });
   try {
     storeVaultKey(key);
   } catch (error) {
@@ -94,4 +97,3 @@ export function deleteVault(): void {
   }
   cachedServices = null;
 }
-

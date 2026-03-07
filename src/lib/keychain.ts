@@ -43,12 +43,15 @@ export function retrieveVaultKey(): Buffer {
     );
     const key = Buffer.from(stdout.toString().trim(), "base64");
     if (key.length !== 32) {
-      throw new Error("Vault key has invalid length — Keychain entry may be corrupted");
+      throw new Error(
+        "Vault key has invalid length — Keychain entry may be corrupted",
+      );
     }
     return key;
   } catch (error: unknown) {
     if (error instanceof KeychainAuthCancelled) throw error;
-    if (error instanceof Error && error.message.includes("invalid length")) throw error;
+    if (error instanceof Error && error.message.includes("invalid length"))
+      throw error;
     const execError = error as { status?: number };
     if (execError.status === 36) throw new KeychainAuthCancelled();
     throw new Error("Failed to retrieve vault key");

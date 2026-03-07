@@ -85,7 +85,7 @@ export default function ImportVault() {
       actions={
         <ActionPanel>
           <Action.SubmitForm
-            title={replacing ? "Re-import" : "Import"}
+            title={replacing ? "Re-Import" : "Import"}
             onSubmit={handleSubmit}
           />
         </ActionPanel>

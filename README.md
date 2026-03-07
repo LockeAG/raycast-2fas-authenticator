@@ -2,11 +2,11 @@
 
 Search and copy TOTP codes from [2FAS](https://2fas.com) exports directly in Raycast. No cloud, no network calls — your secrets stay local in a Keychain-encrypted vault.
 
-![Search OTP](metadata/search-otp.png)
+<a href="https://www.raycast.com/Locke/2fas-authenticator"><img src="https://www.raycast.com/Locke/2fas-authenticator/install_button@2x.png" height="64" alt="Install 2FAS Authenticator" style="height: 64px;" /></a>
 
 ## Features
 
-- **Search OTP** — Browse all services with native Raycast filtering and live countdown
+- **Search OTP** — Browse all services with native Raycast filtering and live TOTP countdown
 - **Recent OTP** — Quick-access pinned and recently used services
 - **Import Vault** — Import encrypted `.2fas` export files
 - **Setup** — Check vault status, re-import, or delete
@@ -15,28 +15,14 @@ Search and copy TOTP codes from [2FAS](https://2fas.com) exports directly in Ray
 
 2FAS is a great mobile authenticator, but it has no desktop app. This extension bridges that gap by importing your 2FAS export and generating TOTP codes locally on your Mac.
 
-## Setup
+## Getting Started
 
 1. Open 2FAS on your phone
-2. Go to **Settings > 2FAS Backup > Export** (set a password)
+2. Go to **Settings > 2FAS Backup > Export** and set a password
 3. Transfer the `.2fas` file to your Mac (AirDrop, iCloud Drive, etc.)
 4. In Raycast, run **Import Vault** and select the file
-5. Done — run **Search OTP** to find and copy codes
-
-## Security Model
-
-- **Vault key** stored in the macOS login Keychain via `/usr/bin/security`
-- **Vault file** is AES-256-GCM encrypted at `~/Library/Application Support/Raycast/extensions/.../vault.enc` with `0600` permissions
-- **Import** decrypts the `.2fas` file in memory (PBKDF2 + AES-256-GCM), then re-encrypts into the local vault
-- **No plaintext secrets on disk** — secrets exist only in memory during runtime
-- **No network calls** — everything is offline
-- **Concealed clipboard** — copied OTP codes are excluded from clipboard history
-- **Zero external crypto dependencies** — uses Node.js `crypto` module only
-
-### Known Limitations
-
-- The vault key is passed as a CLI argument to `/usr/bin/security` (briefly visible in the process list to same-user processes). This is an inherent limitation of the macOS `security` CLI.
-- Secrets remain in the Node.js heap for the lifetime of the extension process. JavaScript has no secure memory zeroing.
+5. Enter your export password — done
+6. Run **Search OTP** to find and copy codes
 
 ## Commands
 
@@ -47,13 +33,38 @@ Search and copy TOTP codes from [2FAS](https://2fas.com) exports directly in Ray
 | Import Vault | Import a `.2fas` export file |
 | Setup | View vault status and manage configuration |
 
-## Development
+## Security Model
+
+| Layer | Detail |
+|-------|--------|
+| Vault key | Random 256-bit key stored in macOS login Keychain via `/usr/bin/security` |
+| Vault file | AES-256-GCM encrypted at `~/Library/Application Support/Raycast/extensions/.../vault.enc` with `0600` permissions |
+| Import | Decrypts `.2fas` in memory (PBKDF2 + AES-256-GCM), re-encrypts into local vault |
+| Secrets at rest | No plaintext secrets on disk — secrets exist only in memory during runtime |
+| Network | Zero network calls — everything is offline |
+| Clipboard | Concealed copy — OTP codes are excluded from clipboard history |
+| Dependencies | Zero external crypto dependencies — Node.js `crypto` module only |
+
+### Known Limitations
+
+- The vault key is passed as a CLI argument to `/usr/bin/security` (briefly visible in the process list to same-user processes). This is an inherent limitation of the macOS `security` CLI.
+- Secrets remain in the Node.js heap for the lifetime of the extension process. JavaScript has no secure memory zeroing.
+
+## Contributing
+
+Contributions are welcome. Please open an issue first to discuss what you'd like to change.
+
+### Development Setup
 
 ```bash
+# Fork and clone the repo
+git clone https://github.com/<your-username>/raycast-2fas-authenticator.git
+cd raycast-2fas-authenticator
+
 # Install dependencies
 npm install
 
-# Run in development mode
+# Start development mode (opens in Raycast)
 npm run dev
 
 # Build
@@ -61,11 +72,25 @@ npm run build
 
 # Lint
 npm run lint
+
+# Fix lint issues
+npm run fix-lint
 ```
 
-## Contributing
+### Pull Request Guidelines
 
-Contributions are welcome. Please open an issue first to discuss what you'd like to change.
+1. Fork the repository and create your branch from `main`
+2. If you've added functionality, update the README if needed
+3. Make sure `npm run lint` passes
+4. Keep PRs focused — one feature or fix per PR
+5. Write a clear description of what your change does and why
+
+### Reporting Bugs
+
+Open an issue with:
+- Steps to reproduce
+- Expected vs actual behavior
+- macOS version and Raycast version
 
 ## License
 
