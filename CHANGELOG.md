@@ -16,7 +16,7 @@
 
 - Recents now show inline TOTP codes with a live countdown, matching Search OTP.
 - Recents show relative timestamps ("2h ago") instead of date-only.
-- Recents view stays open after a copy; switch apps to paste manually.
+- Copying an OTP now closes Raycast and shows a HUD with the service label and code, so you can switch directly to the app you're authenticating to.
 - Search OTP surfaces services with malformed secrets in a "Skipped" section instead of silently dropping them.
 
 ### Migration

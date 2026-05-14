@@ -8,6 +8,8 @@ import {
   showToast,
   Toast,
   Clipboard,
+  closeMainWindow,
+  showHUD,
 } from "@raycast/api";
 type Accessory = List.Item.Accessory;
 import { loadVault, isVaultConfigured, type VaultService } from "./lib/vault";
@@ -139,12 +141,11 @@ export default function RecentOTP() {
       }
       try {
         const fresh = generateCodeForService(service);
+        const label = service.issuer || service.name;
         await Clipboard.copy(fresh.code, { concealed: true });
-        await addRecentService(service.id, service.issuer || service.name);
-        await showToast({
-          style: Toast.Style.Success,
-          title: `Copied: ${fresh.code}`,
-        });
+        await addRecentService(service.id, label);
+        await closeMainWindow({ clearRootSearch: true });
+        await showHUD(`Copied OTP for ${label}`);
       } catch (error) {
         await reportVaultLoadError(error);
       }

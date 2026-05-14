@@ -8,6 +8,8 @@ import {
   showToast,
   Toast,
   Clipboard,
+  closeMainWindow,
+  showHUD,
 } from "@raycast/api";
 import { loadVault, isVaultConfigured, type VaultService } from "./lib/vault";
 import { generateCodeForService, type TOTPCode } from "./lib/totp";
@@ -87,10 +89,8 @@ export default function SearchOTP() {
     await Clipboard.copy(fresh.code, { concealed: true });
     const label = item.service.issuer || item.service.name;
     await addRecentService(item.service.id, label);
-    await showToast({
-      style: Toast.Style.Success,
-      title: `Copied: ${fresh.code}`,
-    });
+    await closeMainWindow({ clearRootSearch: true });
+    await showHUD(`Copied OTP for ${label}`);
   }, []);
 
   const handleCopyAccount = useCallback(async (item: ServiceWithCode) => {
@@ -101,8 +101,10 @@ export default function SearchOTP() {
       });
       return;
     }
+    const label = item.service.issuer || item.service.name;
     await Clipboard.copy(item.service.account, { concealed: true });
-    await showToast({ style: Toast.Style.Success, title: "Account copied" });
+    await closeMainWindow({ clearRootSearch: true });
+    await showHUD(`Copied account for ${label}`);
   }, []);
 
   const handleTogglePin = useCallback(async (item: ServiceWithCode) => {
