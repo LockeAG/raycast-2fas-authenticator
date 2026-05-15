@@ -1,10 +1,10 @@
 # Changelog
 
-## 1.1.0 — 2026-05-14
+## [1.1.0] - 2026-05-15
 
 ### Security
 
-- Re-import is now atomic: a failed parse or wrong password leaves the existing vault and Keychain key untouched. Previously, a failed re-import could destroy the vault.
+- Re-import is now atomic: a failed parse, wrong password, or Keychain write rolls back to the prior vault state. Previously a failed re-import could destroy the vault.
 - Vault file envelope is now version-checked and shape-validated before decryption.
 - Service IDs are now deterministic (derived from issuer + account + secret), so re-importing the same export preserves the recents cache.
 - Removed the module-level base32 secret cache that retained decoded secrets for the process lifetime.
@@ -23,7 +23,7 @@
 
 - The recents cache is wiped once on first launch after this update because service IDs changed shape. Recents will rebuild as you use Search OTP.
 
-## 1.0.0 — 2026-03-07
+## [1.0.0] - 2026-03-07
 
 ### Added
 
