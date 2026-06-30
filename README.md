@@ -2,7 +2,7 @@
 
 Search and copy TOTP codes from [2FAS](https://2fas.com) exports directly in Raycast. No cloud, no network calls. Your secrets stay local in a Keychain-encrypted vault.
 
-<a href="https://www.raycast.com/LockeAG/2fas-authenticator"><img src="https://www.raycast.com/LockeAG/2fas-authenticator/install_button@2x.png" height="64" alt="Install 2FAS Authenticator" style="height: 64px;" /></a>
+<a href="https://www.raycast.com/Lock/2fas-authenticator"><img src="https://www.raycast.com/Lock/2fas-authenticator/install_button@2x.png" height="64" alt="Install 2FAS Authenticator" style="height: 64px;" /></a>
 
 ## Features
 
