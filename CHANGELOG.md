@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.1.1] - 2026-08-14
+
+### Fixed
+
+- Importing a 2FAS export where a service omits the `algorithm` field no longer aborts the entire import. It now falls through to the SHA1 default, matching the RFC 6238 default. Thanks to @Leander250 for the fix.
+
 ## [1.1.0] - 2026-05-15
 
 ### Security
