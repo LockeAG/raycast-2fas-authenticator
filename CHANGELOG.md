@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.2] - 2026-10-26
+
+### Fixed
+
+- A 2FAS export service entry missing its whole `otp` object, or a non-array `services` payload, no longer aborts the entire import. Malformed entries now drop silently instead of throwing.
+- `digits` and `period` from an untrusted export are now clamped to sane ranges (5-10, 1-300) instead of being used unvalidated.
+
 ## [1.1.1] - 2026-08-14
 
 ### Fixed
