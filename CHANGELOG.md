@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.2.0] - 2026-11-26
+
+### Added
+
+- Copy Last Used OTP: a no-view command that copies a fresh code for the most recently used service. Assign a hotkey in Raycast to run it without opening a window.
+
 ## [1.1.2] - 2026-10-26
 
 ### Fixed

@@ -104,6 +104,16 @@ The encrypted `.2fas` export format uses
 NIST recommendations (600k+) but is fixed by the 2FAS file format
 itself, not by this extension. Use a strong export password.
 
+### Copy Last Used OTP has no confirmation step
+
+This command has no view and adds no authentication step. A hotkey
+pressed by mistake, or a confirmed deeplink, puts a live code on the
+clipboard, and the HUD naming the service is the only signal. The
+next paste can land in the wrong place. The code is copied with
+`concealed: true`, so history-aware clipboard managers skip it, but
+it stays on the pasteboard until overwritten. When two services
+share an issuer, the HUD adds the account name.
+
 ## Cryptographic primitives
 
 - **Vault at rest:** AES-256-GCM, 12-byte IV from
@@ -118,8 +128,9 @@ itself, not by this extension. Use a strong export password.
   export schema.
 - **Service IDs:** SHA-256 of `issuer + "\0" + account + "\0" +
   secret`, truncated to 32 hex chars. IDs are stored only inside
-  the encrypted vault and in Raycast's `LocalStorage` for recents;
-  the secret itself never leaves the encrypted vault.
+  the encrypted vault and in Raycast's `LocalStorage` for recents
+  (which also hold the display label and last-used time); the
+  secret itself never leaves the encrypted vault.
 
 ## Reporting a vulnerability
 

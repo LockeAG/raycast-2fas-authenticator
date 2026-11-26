@@ -25,6 +25,13 @@
       "mode": "view"
     },
     {
+      "name": "copy-last-used-otp",
+      "title": "Copy Last Used OTP",
+      "subtitle": "2FAS",
+      "description": "Copy a fresh code for the most recently used service",
+      "mode": "no-view"
+    },
+    {
       "name": "import-vault",
       "title": "Import Vault",
       "subtitle": "2FAS",

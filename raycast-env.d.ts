@@ -17,6 +17,8 @@ declare namespace Preferences {
   export type SearchOtp = ExtensionPreferences & {}
   /** Preferences accessible in the `recent-otp` command */
   export type RecentOtp = ExtensionPreferences & {}
+  /** Preferences accessible in the `copy-last-used-otp` command */
+  export type CopyLastUsedOtp = ExtensionPreferences & {}
   /** Preferences accessible in the `import-vault` command */
   export type ImportVault = ExtensionPreferences & {}
   /** Preferences accessible in the `setup` command */
@@ -28,6 +30,8 @@ declare namespace Arguments {
   export type SearchOtp = {}
   /** Arguments passed to the `recent-otp` command */
   export type RecentOtp = {}
+  /** Arguments passed to the `copy-last-used-otp` command */
+  export type CopyLastUsedOtp = {}
   /** Arguments passed to the `import-vault` command */
   export type ImportVault = {}
   /** Arguments passed to the `setup` command */
