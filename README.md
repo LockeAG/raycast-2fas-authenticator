@@ -8,6 +8,7 @@ Search and copy TOTP codes from [2FAS](https://2fas.com) exports directly in Ray
 
 - **Search OTP**: browse all services with native Raycast filtering and live TOTP countdown
 - **Recent OTP**: quick access to pinned and recently used services
+- **Copy Last Used OTP**: copy a fresh code for the last service you used, no search (assign a hotkey)
 - **Import Vault**: import encrypted `.2fas` export files
 - **Setup**: check vault status, re-import, or delete
 
@@ -30,6 +31,7 @@ Search and copy TOTP codes from [2FAS](https://2fas.com) exports directly in Ray
 |---------|-------------|
 | Search OTP | Search all services, copy codes with live countdown |
 | Recent OTP | Access pinned and recently used services |
+| Copy Last Used OTP | Copy a fresh code for the most recently used service, no window |
 | Import Vault | Import a `.2fas` export file |
 | Setup | View vault status and manage configuration |
 
